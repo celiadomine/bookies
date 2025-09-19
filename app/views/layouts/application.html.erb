@@ -13,23 +13,28 @@
 <body class="bg-gray-100 text-gray-900">
 <div class="flex justify-between p-4 bg-pink-500 text-white">
 <div>
-  <%= link_to "Home", root_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+  <%= link_to "Home", root_path, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
   <% if current_user %>
-      <%= link_to "Profile", profile_path(current_user), class: "hover:bg-pink-700 px-4 py-2 rounded" %>
-      <%= link_to "My Books", books_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+      <%= link_to "Profile", profile_path(current_user), class: "hover:bg-pink-700 px-4 py-1 rounded" %>
+      <%= link_to "My Books", books_path, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
   <% end %>
 </div>
 
 <div>
     <% if current_user %>
-      <%= button_to "Logout", logout_path, data: { turbo_method: :delete }, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+      <%= button_to "Logout", logout_path, data: { turbo_method: :delete }, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
     <% else %>
-      <%= link_to "Login", login_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
-      <%= link_to "Sign Up", signup_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+      <%= link_to "Login", login_path, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
+      <%= link_to "Sign Up", signup_path, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
     <% end %>
   </div>
 </div>
 <div class="mx-8 mt-8">
+<% if notice %>
+  <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4" role="alert">
+    <p class="p-4 rounded-md border border-pink-500 text-pink-500"><%= notice %></p>
+  </div>
+<% end %>
 <%= yield %>
 </body>
 </html>

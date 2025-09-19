@@ -8,7 +8,7 @@
 
   <div>
     <%= f.label :email_address %>
-    <%= f.email_field :email_address, class: "w-full p-2 border rounded", required: true %>
+   <%= f.email_field :unconfirmed_email, value: @user.email_address, class: "w-full p-2 border rounded", required: true %>
   </div>
 
   <div>

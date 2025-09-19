@@ -19,12 +19,16 @@ Rails.application.routes.draw do
 
   # The :delete method is still the RESTful convention
   delete "logout", to: "sessions#destroy"
-  
+
   # Add a post route to handle form submissions
   post "logout", to: "sessions#destroy"
 
   # Profile routes
-  resources :profiles, only: [:show, :edit, :update]
+  resources :profiles, only: [:show, :edit, :update] do
+    member do
+      get :confirm_email
+    end
+  end
 
   # Root route
   root 'home#index'  # The homepage route

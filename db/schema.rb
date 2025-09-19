@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_19_081500) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_19_134716) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "authors"
@@ -86,6 +86,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_081500) do
     t.string "role", default: "user", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "unconfirmed_email"
+    t.string "confirmation_token"
+    t.datetime "confirmation_sent_at"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

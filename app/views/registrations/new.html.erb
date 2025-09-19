@@ -1,7 +1,7 @@
 <h1 class="text-3xl font-semibold mb-6">Sign Up</h1>
 
 <% if flash[:alert] %>
-  <div class="bg-red-500 text-white p-3 mb-4 rounded">
+  <div class="p-4 rounded-md border border-pink-500 text-pink-500">
     <%= flash[:alert] %>
   </div>
 <% end %>
@@ -28,6 +28,6 @@
   </div>
 
   <div>
-    <%= f.submit "Sign Up", class: "w-full bg-[#FF66AD] text-white py-2 rounded-md cursor-pointer hover:bg-[#FF4A9F]" %>
+    <%= f.submit "Sign Up", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
   </div>
 <% end %>
