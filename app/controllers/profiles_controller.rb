@@ -1,18 +1,18 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
 
   def show
-    # No need to load @user again; it's already set in the before_action
+    @user = current_user  # Only the current user should see their profile
   end
 
   def edit
-    # @user is set here too, so you can use it in the form
+    @user = current_user  # Fetch the current user to edit their profile
   end
 
   def update
+    @user = current_user  # Fetch the current user to update their profile
     if @user.update(user_params)
-      redirect_to profile_path, notice: "Profil erfolgreich aktualisiert!"
+      redirect_to profile_path, notice: "Profile updated successfully!"
     else
       render :edit
     end

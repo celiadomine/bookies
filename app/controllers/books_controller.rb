@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :index]
+  before_action :authenticate_user!, only: [:create, :update, :destroy, :new, :create]
 
   def index
     @books = current_user.books  # Get the books belonging to the current user

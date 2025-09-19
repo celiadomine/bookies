@@ -14,18 +14,20 @@
 <div class="flex justify-between p-4 bg-pink-500 text-white">
 <div>
   <%= link_to "Home", root_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
-  <%= link_to "Profile", profiles_show_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
-  <%= link_to "My Books", books_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+  <% if current_user %>
+      <%= link_to "Profile", profile_path(current_user), class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+      <%= link_to "My Books", books_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+  <% end %>
 </div>
 
 <div>
-  <% if current_user %>
-   <%= link_to "Logout", logout_path, method: :delete, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
-  <% else %>
-    <%= link_to "Login", login_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
-    <%= link_to "Sign Up", signup_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
-  <% end %>
-</div>
+    <% if current_user %>
+      <%= button_to "Logout", logout_path, data: { turbo_method: :delete }, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+    <% else %>
+      <%= link_to "Login", login_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+      <%= link_to "Sign Up", signup_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+    <% end %>
+  </div>
 </div>
 <div class="mx-8 mt-8">
 <%= yield %>

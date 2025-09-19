@@ -16,12 +16,15 @@ Rails.application.routes.draw do
   post "registrations", to: "registrations#create" 
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
+
+  # The :delete method is still the RESTful convention
   delete "logout", to: "sessions#destroy"
+  
+  # Add a post route to handle form submissions
+  post "logout", to: "sessions#destroy"
 
   # Profile routes
-  get "profiles/show", to: "profiles#show"
-  get "profiles/edit", to: "profiles#edit"
-  patch "profiles/update", to: "profiles#update"
+  resources :profiles, only: [:show, :edit, :update]
 
   # Root route
   root 'home#index'  # The homepage route
