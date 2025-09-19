@@ -1,0 +1,18 @@
+<h1 class="text-3xl font-semibold text-pink-600">Login</h1>
+
+<%= form_with url: '/sessions', method: :post, local: true do |f| %>
+  <div class="mb-4">
+    <%= f.label :email_address, "Email" %>
+    <%= f.text_field :email_address, class: "w-full p-2 border border-gray-300 rounded", required: true %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password, class: "w-full p-2 border border-gray-300 rounded", required: true %>
+  </div>
+
+  <div class="flex justify-between items-center">
+    <%= f.submit "Login", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
+    <%= link_to "Forgot Password?", new_password_path, class: "text-pink-500" %>
+  </div>
+<% end %>

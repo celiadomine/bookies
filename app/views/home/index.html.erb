@@ -1,0 +1,15 @@
+<h1 class="text-3xl font-semibold">Welcome to Bookies!</h1>
+
+<h2 class="mt-4 text-xl">All Posts</h2>
+<ul>
+  <% @posts.each do |post| %>
+    <li><%= post.text %> - <%= post.user.username %></li>
+  <% end %>
+</ul>
+
+<h2 class="mt-4 text-xl">All Reviews</h2>
+<ul>
+  <% @reviews.each do |review| %>
+    <li><%= review.title %> - <%= review.user.username %></li>
+  <% end %>
+</ul>

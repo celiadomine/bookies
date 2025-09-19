@@ -1,0 +1,14 @@
+<h1 class="text-3xl font-semibold">My Books</h1>
+
+<%= link_to "Add a new book", new_book_path, class: "bg-[#FF66AD] text-white px-4 py-2 rounded" %>
+
+<ul class="mt-4">
+  <% @books.each do |book| %>
+    <li class="mb-4">
+      <%= link_to book.title, book_path(book), class: "text-blue-500 hover:text-pink-500" %>
+      <br>
+      <%= book.label %>
+      <%= link_to "Edit", edit_book_path(book), class: "text-pink-500 ml-2" %>
+    </li>
+  <% end %>
+</ul>

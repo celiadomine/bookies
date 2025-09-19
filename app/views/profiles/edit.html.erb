@@ -1,0 +1,24 @@
+<h1 class="text-3xl font-semibold">Edit Your Profile</h1>
+<%= form_with model: @user, url: profiles_update_path, method: :patch, class: "space-y-4" do |f| %>
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username, class: "w-full p-2 border rounded", required: true %>
+  </div>
+
+  <div>
+    <%= f.label :email_address %>
+    <%= f.email_field :email_address, class: "w-full p-2 border rounded", required: true %>
+  </div>
+
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "w-full p-2 border rounded" %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "w-full p-2 border rounded" %>
+  </div>
+
+  <%= f.submit "Update Profile", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
+<% end %>

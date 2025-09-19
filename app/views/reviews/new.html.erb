@@ -1,0 +1,19 @@
+<h1>Create a New Review</h1>
+<%= form_with model: @review do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  
+  <div>
+    <%= f.label :rating %>
+    <%= f.number_field :rating, min: 1, max: 5 %>
+  </div>
+  
+  <%= f.submit "Create Review" %>
+<% end %>

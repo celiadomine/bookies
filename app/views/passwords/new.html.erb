@@ -1,0 +1,10 @@
+<h1 class="text-3xl font-semibold">Reset Your Password</h1>
+<%= form_with url: passwords_path, method: :post do |f| %>
+  <div>
+    <%= f.label :email_address, "Email" %>
+    <%= f.email_field :email_address, class: "w-full p-2 border rounded" %>
+  </div>
+  <div>
+    <%= f.submit "Send Password Reset Link", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
+  </div>
+<% end %>

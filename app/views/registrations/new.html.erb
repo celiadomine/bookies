@@ -1,0 +1,33 @@
+<h1 class="text-3xl font-semibold mb-6">Sign Up</h1>
+
+<% if flash[:alert] %>
+  <div class="bg-red-500 text-white p-3 mb-4 rounded">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= form_with model: @user, url: registrations_path, method: :post, class: "space-y-6" do |f| %>
+  <div>
+    <%= f.label :username, "Username", class: "block text-gray-700" %>
+    <%= f.text_field :username, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF66AD]" %>
+  </div>
+
+  <div>
+    <%= f.label :email_address, "Email Address", class: "block text-gray-700" %>
+    <%= f.email_field :email_address, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF66AD]" %>
+  </div>
+
+  <div>
+    <%= f.label :password, "Password", class: "block text-gray-700" %>
+    <%= f.password_field :password, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF66AD]" %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation, "Confirm Password", class: "block text-gray-700" %>
+    <%= f.password_field :password_confirmation, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF66AD]" %>
+  </div>
+
+  <div>
+    <%= f.submit "Sign Up", class: "w-full bg-[#FF66AD] text-white py-2 rounded-md cursor-pointer hover:bg-[#FF4A9F]" %>
+  </div>
+<% end %>

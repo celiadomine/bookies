@@ -1,0 +1,27 @@
+<h1 class="text-3xl font-semibold"><%= @book.title %></h1>
+<p>By: <%= @book.authors %></p>
+
+<%= form_with model: @review, url: book_reviews_path(@book), method: :post do |f| %>
+  <div>
+    <%= f.label :title, "Review Title" %>
+    <%= f.text_field :title, class: "w-full p-2 border rounded" %>
+  </div>
+
+  <div>
+    <%= f.label :body, "Review Body" %>
+    <%= f.text_area :body, class: "w-full p-2 border rounded" %>
+  </div>
+
+  <div>
+    <%= f.label :rating, "Rating (1-5)" %>
+    <%= f.number_field :rating, min: 1, max: 5, class: "w-full p-2 border rounded" %>
+  </div>
+
+  <%= f.submit "Submit Review", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
+<% end %>
+
+<h2 class="mt-4 text-xl">Add a Label</h2>
+<%= form_with model: @book, url: book_path(@book), method: :patch do |f| %>
+  <%= f.select :label, ['Reading', 'Bought', 'Read', 'Wishlist', 'DNF'], class: "w-full p-2 border rounded" %>
+  <%= f.submit "Update Label", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
+<% end %>
