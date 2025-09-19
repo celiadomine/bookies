@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get "users/index"
+    get "users/edit"
+    get "users/update"
+  end
   # Search route for books
   get "books/search", to: "books#search"  # You might need this route for book search.
 
@@ -30,6 +35,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :users, only: [:index, :edit, :update]
+  end
+  
   # Root route
   root 'home#index'  # The homepage route
 end

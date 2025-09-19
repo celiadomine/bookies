@@ -13,10 +13,14 @@
 <body class="bg-gray-100 text-gray-900">
 <div class="flex justify-between p-4 bg-pink-500 text-white">
 <div>
-  <%= link_to "Home", root_path, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
+  <%= link_to "Home", root_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
   <% if current_user %>
-      <%= link_to "Profile", profile_path(current_user), class: "hover:bg-pink-700 px-4 py-1 rounded" %>
-      <%= link_to "My Books", books_path, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
+      <%= link_to "Profile", profile_path(current_user), class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+      <%= link_to "My Books", books_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+    
+      <% if current_user.admin? %>
+        <%= link_to "Admin Dashboard", admin_users_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+    <% end %>
   <% end %>
 </div>
 
@@ -24,8 +28,8 @@
     <% if current_user %>
       <%= button_to "Logout", logout_path, data: { turbo_method: :delete }, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
     <% else %>
-      <%= link_to "Login", login_path, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
-      <%= link_to "Sign Up", signup_path, class: "hover:bg-pink-700 px-4 py-1 rounded" %>
+      <%= link_to "Login", login_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
+      <%= link_to "Sign Up", signup_path, class: "hover:bg-pink-700 px-4 py-2 rounded" %>
     <% end %>
   </div>
 </div>
