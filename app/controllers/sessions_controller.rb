@@ -3,18 +3,16 @@ class SessionsController < ApplicationController
       # Render the login form
     end
   
+
     def create
-      @user = User.find_by(email_address: params[:email_address])
-  
-      if @user && @user.authenticate(params[:password])
-        # Set session with user_id after successful login
-        session[:user_id] = @user.id
-        redirect_to root_path, notice: "Logged in successfully!"
-      else
-        flash.now[:alert] = "Invalid credentials"
-        render :new
+        if user = User.authenticate_by(email_address: params[:email_address], password: params[:password])
+          session[:user_id] = user.id
+          redirect_to root_path, notice: "Erfolgreich eingeloggt!"
+        else
+          flash.now[:alert] = "Ungültiger Benutzername oder Passwort."
+          render :new
+        end
       end
-    end
   
     def destroy
         reset_session

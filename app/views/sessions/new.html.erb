@@ -1,5 +1,9 @@
 <h1 class="text-3xl font-semibold text-pink-600">Login</h1>
-
+<% if flash[:alert] %>
+  <div class="text-pink-500">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 <%= form_with url: login_path, method: :post, local: true do |f| %>
   <div class="mb-4">
     <%= f.label :email_address, "Email" %>
