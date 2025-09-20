@@ -3,13 +3,39 @@
 <h2 class="mt-4 text-xl">All Posts</h2>
 <ul>
   <% @posts.each do |post| %>
-    <li><%= post.text %> - <%= post.user.username %></li>
+    <li>- <%= post.user.username %></li>
+
+    <div class="mb-4 p-4 border rounded-md shadow-sm">
+      <p class="font-bold text-lg mb-1"><%= post.title %></p>
+      <p class="text-gray-700 mb-2"><%= post.body %></p>
+      <p class="text-sm text-gray-500">
+        <span class="font-semibold">Posted by:</span> <%= post.user.username %>
+        <span class="font-semibold">for:</span> <%= link_to post.book.title, book_path(post.book), class: "text-pink-500 hover:underline" %>
+      </p>
+    </div>
   <% end %>
 </ul>
 
 <h2 class="mt-4 text-xl">All Reviews</h2>
 <ul>
   <% @reviews.each do |review| %>
-    <li><%= review.title %> - <%= review.user.username %></li>
+
+    <div class="mb-4 p-4 border rounded-md shadow-sm">
+      <p class="font-bold text-lg mb-1">
+        "<%= review.title %>"
+        <span class="text-yellow-500">
+          <% review.rating.times do %>
+            &#9733;
+          <% end %>
+        </span>
+      </p>
+      <p class="text-gray-700 mb-2 italic">
+        <%= review.body %>
+      </p>
+      <p class="text-sm text-gray-500">
+        <span class="font-semibold">Reviewed by:</span> <%= review.user.username %>
+        <span class="font-semibold">for:</span> <%= link_to review.book.title, book_path(review.book), class: "text-pink-500 hover:underline" %>
+      </p>
+    </div>
   <% end %>
 </ul>

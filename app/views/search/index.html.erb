@@ -1,0 +1,21 @@
+<h1 class="text-3xl font-semibold">Search for Books</h1>
+
+<%= form_with url: books_search_path, method: :get do |f| %>
+  <%= f.label :query, "Search for a book" %>
+  <%= f.text_field :query, class: "w-full p-2 border rounded" %>
+  <%= f.submit "Search", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
+<% end %>
+
+<% if @books.present? %>
+  <h2 class="mt-4 text-xl">Results:</h2>
+  <ul>
+    <% @books.each do |book| %>
+      <li class="mt-2">
+        <%= book["volumeInfo"]["title"] %> by <%= book["volumeInfo"]["authors"]&.join(", ") %>
+        <%= link_to "Select this book", new_book_path(google_books_id: book["id"]), class: "text-blue-500 ml-2" %>
+      </li>
+    <% end %>
+  </ul>
+<% elsif params[:query].present? %>
+  <p class="mt-4">No results found.</p>
+<% end %>

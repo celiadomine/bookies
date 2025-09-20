@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_19_204041) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_20_203245) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "authors"
@@ -19,6 +19,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_204041) do
     t.string "cover_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
+    t.string "published_date"
+    t.integer "label"
+    t.string "google_books_id"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_books_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -50,6 +56,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_204041) do
     t.string "post_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "body"
+    t.string "title"
     t.index ["book_id"], name: "index_posts_on_book_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -92,6 +100,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_19_204041) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "books", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "books"

@@ -1,2 +1,15 @@
-<h1>Passwords#edit</h1>
-<p>Find me in app/views/passwords/edit.html.erb</p>
+<h1 class="text-3xl font-semibold mb-6">Reset Your Password</h1>
+
+<%= form_with url: password_path(user: { token: params[:token] }), method: :patch, local: true, class: "max-w-md" do |f| %>
+  <div class="mb-4">
+    <%= f.label :password, "New Password" %>
+    <%= f.password_field :password, class: "w-full p-2 border border-gray-300 rounded", required: true %>
+  </div>
+  <div class="mb-4">
+    <%= f.label :password_confirmation, "Confirm New Password" %>
+    <%= f.password_field :password_confirmation, class: "w-full p-2 border border-gray-300 rounded", required: true %>
+  </div>
+  <%= f.hidden_field :password_reset_token, value: params[:token] %>
+  
+  <%= f.submit "Update Password", class: "bg-pink-500 text-white px-4 py-2 rounded cursor-pointer" %>
+<% end %>

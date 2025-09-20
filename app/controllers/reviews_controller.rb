@@ -1,15 +1,24 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
+
   def new
-    @review = Review.new
+    @book = Book.find(params[:book_id])
+    @review = @book.reviews.new
   end
 
+
   def create
-    @review = current_user.reviews.build(review_params)
+    @book = Book.find(params[:book_id]) 
+    
+    @review = @book.reviews.build(review_params)
+    @review.user = current_user
+    
     if @review.save
-      redirect_to book_path(@review.book), notice: "Review erfolgreich erstellt!"
+      redirect_to book_path(@book), notice: "Review successfully created!"
     else
+      # If save fails, re-render the 'new' template
+      # The @book variable is now available for the form
       render :new
     end
   end
