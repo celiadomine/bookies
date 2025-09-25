@@ -1,23 +1,24 @@
 <% 
+  # Using Safe Navigation (&.) to prevent NoMethodErrors if 'trackable' is nil
   like = activity.trackable
   likeable = like&.likeable 
 %>
 
 <p>
-  <span class="font-bold"><%= activity.owner.username %></span> hat 
+  <span class="font-bold"><%= activity.owner.username %></span> liked 
   
   <% if likeable.present? %>
     <% if likeable.is_a?(Post) && likeable.book.present? %>
-      einen Post geliked.
+      a Post.
     
     <% elsif likeable.is_a?(Review) && likeable.book.present? %>
-      ein Review zu geliked.
+      a Review.
       
     <% else %>
-      einen Beitrag geliked.
+      a contribution.
       
     <% end %>
   <% else %>
-    einen gelöschten Beitrag geliked.
+    a deleted contribution.
   <% end %>
 </p>

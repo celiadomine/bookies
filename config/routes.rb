@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   end
 
   # Nested and standard resource routes for Books, Reviews, and Posts
-  resources :books, only: [:index, :show, :new, :destroy] do
-    resources :reviews, only: [:new, :create] do
+  resources :books, only: [:index, :show, :create, :new, :destroy] do
+    resources :reviews, only: [:new, :create, :destroy] do
       resources :likes, only: [:create, :destroy] 
     end
     resources :posts, only: [:new, :create, :destroy] do

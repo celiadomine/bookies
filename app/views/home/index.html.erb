@@ -27,6 +27,10 @@
           
           <span class="ml-2"><%= post.likes.count %> Likes</span>
         </p>
+
+       <% if current_user.present? && (current_user == post.user || current_user.admin?) %>
+            <%= button_to "Delete Post", book_post_path(post.book, post), method: :delete, data: { confirm: "Are you sure?" }, class: "text-pink-600" %>
+        <% end %>
       </div>
     </li>
   <% end %>
@@ -50,25 +54,29 @@
         </p>
         
         <p class="text-sm text-gray-500">
-          <span class="font-semibold">Reviewed by:</span> <%= review.user.username %>
-          <span class="font-semibold">for:</span> <%= link_to review.book.title, book_path(review.book), class: "text-pink-500 hover:underline" %>
+            <span class="font-semibold">Reviewed by:</span> <%= review.user.username %>
+            <span class="font-semibold">for:</span> <%= link_to review.book.title, book_path(review.book), class: "text-pink-500 hover:underline" %>
         </p>
         
         <p class="text-sm text-gray-500 mt-2 flex items-center">
-          <span class="font-semibold">Reviewed by:</span> <%= review.user.username %>
+            <span class="font-semibold">Reviewed by:</span> <%= review.user.username %>
           
           <% if current_user %>
             <% like = current_user.likes.find_by(likeable: review) %>
             
             <% if like %>
-              <%= button_to "Unlike", book_review_like_path(review.book, review, like), method: :delete, class: "ml-4 text-pink-500 hover:underline cursor-pointer" %>
-             <% else %>
-              <%= button_to "Like", book_review_likes_path(review.book, review), method: :post, class: "ml-4 text-blue-500 hover:underline cursor-pointer" %>
+                <%= button_to "Unlike", book_review_like_path(review.book, review, like), method: :delete, class: "ml-4 text-pink-500 hover:underline cursor-pointer" %>
+            <% else %>
+                <%= button_to "Like", book_review_likes_path(review.book, review), method: :post, class: "ml-4 text-blue-500 hover:underline cursor-pointer" %>
             <% end %>
           <% end %>
           
-          <span class="ml-2"><%= review.likes.count %> Likes</span>
+            <span class="ml-2"><%= review.likes.count %> Likes</span>
         </p>
+        <% if current_user.present? && (current_user == review.user || current_user.admin?) %>
+            <%= button_to "Delete Review", book_review_path(review.book, review), method: :delete, data: { confirm: "Are you sure?" }, class: "text-pink-600" %>
+        <% end %>
+
       </div>
     </li>
   <% end %>
