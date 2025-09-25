@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get "posts/new"
-  get "posts/create"
+
   # Root route
   root 'home#index'
 
@@ -26,9 +25,13 @@ Rails.application.routes.draw do
   end
 
   # Nested and standard resource routes for Books, Reviews, and Posts
-  resources :books do
-    resources :reviews, only: [:new, :create]
-    resources :posts, only: [:new, :create]
+  resources :books, only: [:index, :show, :destroy] do
+    resources :reviews, only: [:new, :create] do
+      resources :likes, only: [:create, :destroy] 
+    end
+    resources :posts, only: [:new, :create, :destroy] do
+      resources :likes, only: [:create, :destroy] 
+    end
   end
 
   # Admin namespace

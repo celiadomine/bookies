@@ -4,7 +4,7 @@
 
   <div class="prose max-w-none text-gray-700 mb-6">
     <h2 class="text-2xl font-semibold mb-2">Description</h2>
-    <p><%= @book.description %></p>
+    <p><%= strip_tags(@book.description) %></p>
   </div>
 
   <div class="border-t pt-4 mt-6">

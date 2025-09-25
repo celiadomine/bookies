@@ -1,41 +1,75 @@
 <h1 class="text-3xl font-semibold">Welcome to Bookies!</h1>
 
-<h2 class="mt-4 text-xl">All Posts</h2>
-<ul>
+<h2 class="text-3xl font-bold mb-6">All Posts</h2>
+<ul class="space-y-4">
   <% @posts.each do |post| %>
-    <li>- <%= post.user.username %></li>
+    <li>
+      <div class="p-4 border rounded-md shadow-sm bg-white">
+        <p class="font-bold text-lg mb-1"><%= post.title %></p>
+        <p class="text-gray-700 mb-2"><%= post.body %></p>
+        
+        <p class="text-sm text-gray-500">
+          <span class="font-semibold">Posted by:</span> <%= post.user.username %>
+          <span class="font-semibold">for:</span> <%= link_to post.book.title, book_path(post.book), class: "text-pink-500 hover:underline" %>
+        </p>
 
-    <div class="mb-4 p-4 border rounded-md shadow-sm">
-      <p class="font-bold text-lg mb-1"><%= post.title %></p>
-      <p class="text-gray-700 mb-2"><%= post.body %></p>
-      <p class="text-sm text-gray-500">
-        <span class="font-semibold">Posted by:</span> <%= post.user.username %>
-        <span class="font-semibold">for:</span> <%= link_to post.book.title, book_path(post.book), class: "text-pink-500 hover:underline" %>
-      </p>
-    </div>
+        <p class="text-sm text-gray-500 mt-2 flex items-center">
+          <% if current_user %>
+            <% # Check if current user has liked this post (post is the likeable object) %>
+            <% like = current_user.likes.find_by(likeable: post) %>
+            
+            <% if like %>
+             <%= button_to "Unlike", book_post_like_path(post.book, post, like), method: :delete, class: "ml-4 text-pink-500 hover:underline cursor-pointer" %>
+            <% else %>
+              <%= button_to "Like", book_post_likes_path(post.book, post), method: :post, class: "ml-4 text-blue-500 hover:underline cursor-pointer" %>
+            <% end %>
+          <% end %>
+          
+          <span class="ml-2"><%= post.likes.count %> Likes</span>
+        </p>
+      </div>
+    </li>
   <% end %>
 </ul>
 
-<h2 class="mt-4 text-xl">All Reviews</h2>
-<ul>
+<h2 class="text-3xl font-bold my-6 border-t pt-6">All Reviews</h2>
+<ul class="space-y-4">
   <% @reviews.each do |review| %>
-
-    <div class="mb-4 p-4 border rounded-md shadow-sm">
-      <p class="font-bold text-lg mb-1">
-        "<%= review.title %>"
-        <span class="text-yellow-500">
-          <% review.rating.times do %>
-            &#9733;
+    <li>
+      <div class="p-4 border rounded-md shadow-sm bg-white">
+        <p class="font-bold text-lg mb-1">
+          "<%= review.title %>"
+          <span class="text-yellow-500">
+            <% review.rating.times do %>
+              &#9733;
+            <% end %>
+          </span>
+        </p>
+        <p class="text-gray-700 mb-2 italic">
+          <%= review.body %>
+        </p>
+        
+        <p class="text-sm text-gray-500">
+          <span class="font-semibold">Reviewed by:</span> <%= review.user.username %>
+          <span class="font-semibold">for:</span> <%= link_to review.book.title, book_path(review.book), class: "text-pink-500 hover:underline" %>
+        </p>
+        
+        <p class="text-sm text-gray-500 mt-2 flex items-center">
+          <span class="font-semibold">Reviewed by:</span> <%= review.user.username %>
+          
+          <% if current_user %>
+            <% like = current_user.likes.find_by(likeable: review) %>
+            
+            <% if like %>
+              <%= button_to "Unlike", book_review_like_path(review.book, review, like), method: :delete, class: "ml-4 text-pink-500 hover:underline cursor-pointer" %>
+             <% else %>
+              <%= button_to "Like", book_review_likes_path(review.book, review), method: :post, class: "ml-4 text-pink-500 hover:underline cursor-pointer" %>
+            <% end %>
           <% end %>
-        </span>
-      </p>
-      <p class="text-gray-700 mb-2 italic">
-        <%= review.body %>
-      </p>
-      <p class="text-sm text-gray-500">
-        <span class="font-semibold">Reviewed by:</span> <%= review.user.username %>
-        <span class="font-semibold">for:</span> <%= link_to review.book.title, book_path(review.book), class: "text-pink-500 hover:underline" %>
-      </p>
-    </div>
+          
+          <span class="ml-2"><%= review.likes.count %> Likes</span>
+        </p>
+      </div>
+    </li>
   <% end %>
 </ul>

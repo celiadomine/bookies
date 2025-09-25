@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_many :books, dependent: :destroy
     has_many :reviews, dependent: :destroy
     has_many :posts, dependent: :destroy
+    has_many :likes, dependent: :destroy
 
     enum :role, { user: 0, admin: 1}, default: :user
 
