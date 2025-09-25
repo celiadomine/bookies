@@ -1,5 +1,7 @@
-<h1 class="text-3xl font-semibold">Welcome, <%= @user.username %></h1>
+<h1 class="text-3xl font-semibold mb-6">Welcome, <%= @user.username %>!</h1>
 
-<%= link_to "Edit Profile", edit_profile_path(@user), class: "bg-pink-500 text-white px-4 py-2 rounded" %>
+<div class="flex space-x-4">
+  <%= link_to "Edit Profile", edit_profile_path(@user), class: "bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full shadow-md transition-colors" %>
 
-<%= link_to "Aktivitäts-Feed anzeigen", activities_profile_path(@user), class: "bg-pink-500 text-white px-4 py-2 rounded" %>
+  <%= link_to "View Activity Feed", activities_profile_path(@user), class: "bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-full shadow-md transition-colors" %>
+</div>
