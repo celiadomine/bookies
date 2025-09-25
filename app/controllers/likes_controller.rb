@@ -16,7 +16,6 @@ class LikesController < ApplicationController
   def destroy
     @likeable = find_likeable
     
-    # Sucht das spezifische Like des aktuellen Benutzers für dieses Objekt
     like = current_user.likes.find_by(likeable: @likeable)
     like.destroy if like
     

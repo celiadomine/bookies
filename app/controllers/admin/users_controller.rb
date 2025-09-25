@@ -16,7 +16,7 @@ class Admin::UsersController < ApplicationController
     authorize @user
   
     if @user.update(user_params)
-      redirect_to admin_users_path, notice: "Benutzer erfolgreich aktualisiert."
+      redirect_to admin_users_path, notice: "User successfully updated."
     else
       render :edit
     end

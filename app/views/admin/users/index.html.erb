@@ -5,8 +5,8 @@
       <tr>
         <th class="p-4 border border-gray-300 text-left">Username</th>
         <th class="p-4 border border-gray-300 text-left">E-Mail</th>
-        <th class="p-4 border border-gray-300 text-left">Rolle</th>
-        <th class="p-4 border border-gray-300 text-left">Aktionen</th>
+        <th class="p-4 border border-gray-300 text-left">Role</th>
+        <th class="p-4 border border-gray-300 text-left">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
           <td class="p-4 border border-gray-300"><%= user.email_address %></td>
           <td class="p-4 border border-gray-300"><%= user.role %></td>
           <td class="p-4 border border-gray-300">
-            <%= link_to 'Bearbeiten', edit_admin_user_path(user), class: "text-pink-500 hover:text-blue-700 font-medium" %>
+            <%= link_to 'Edit', edit_admin_user_path(user), class: "text-pink-500 hover:text-blue-700 font-medium" %>
           </td>
         </tr>
       <% end %>
