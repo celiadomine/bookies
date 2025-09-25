@@ -1,22 +1,29 @@
-<h1 class="text-3xl font-semibold text-pink-600">Login</h1>
-<% if flash[:alert] %>
-  <div class="text-pink-500">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
-<%= form_with url: login_path, method: :post, local: true do |f| %>
-  <div class="mb-4">
-    <%= f.label :email_address, "Email" %>
-    <%= f.text_field :email_address, class: "w-full p-2 border border-gray-300 rounded", required: true %>
-  </div>
+<div class="container mx-auto p-8 max-w-sm bg-white shadow-xl rounded-2xl border border-pink-100">
+  <h1 class="text-3xl font-bold mb-8 text-center">Login</h1>
+  <% if flash[:alert] %>
+    <div class="p-4 mb-4 rounded-lg border border-pink-400 bg-pink-50 shadow-sm font-medium">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
 
-  <div class="mb-4">
-    <%= f.label :password, "Password" %>
-    <%= f.password_field :password, class: "w-full p-2 border border-gray-300 rounded", required: true %>
-  </div>
+  <%= form_with url: login_path, method: :post, local: true, class: "space-y-6" do |f| %>
+    <div>
+      <%= f.label :email_address, "Email", class: "block text-base font-semibold mb-2" %>
+      <%= f.email_field :email_address, 
+          class: "w-full p-3 border rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all", required: true %>
+    </div>
+    <div>
+      <%= f.label :password, "Password", class: "block text-base font-semibold mb-2" %>
+      <%= f.password_field :password, 
+          class: "w-full p-3 border rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all", required: true %>
+    </div>
+    <div class="flex justify-between items-center pt-2">
 
-  <div class="flex justify-between items-center">
-    <%= f.submit "Login", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
-    <%= link_to "Forgot Password?", new_password_path, class: "text-pink-500" %>
-  </div>
-<% end %>
+      <%= f.submit "Login", 
+          class: "py-3 px-6 rounded-full shadow-lg text-lg font-bold text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-pink-400 cursor-pointer transition-all duration-200" %>
+
+      <%= link_to "Forgot Password?", new_password_path, 
+          class: "text-pink-600 hover:text-pink-800 font-medium underline transition-colors" %>
+    </div>
+  <% end %>
+</div>

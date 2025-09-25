@@ -1,13 +1,16 @@
-<div class="container mx-auto p-8">
-  <h1 class="text-3xl font-bold mb-8 text-gray-800">Edit User: <%= @user.username %></h1>
+<div class="container mx-auto p-8 max-w-lg bg-white shadow-xl rounded-2xl border border-pink-100">
+  
+  <h1 class="text-3xl font-bold mb-8 text-center">
+    Edit User: <%= @user.username %>
+  </h1>
 
   <%= form_with(model: @user, url: admin_user_path(@user), method: :patch, local: true, class: "space-y-6") do |form| %>
     <% if @user.errors.any? %>
-      <div class="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+      <div class="p-4 bg-red-50 border border-red-300 text-red-600 rounded-lg shadow-sm">
         <h2 class="font-bold mb-2">
           <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
         </h2>
-        <ul>
+        <ul class="list-disc list-inside space-y-1">
           <% @user.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
@@ -16,21 +19,30 @@
     <% end %>
 
     <div class="flex flex-col">
-      <%= form.label :username, class: "text-gray-700 font-medium mb-1" %>
-      <%= form.text_field :username, class: "border border-gray-300 p-2 rounded-md" %>
+      <%= form.label :username, class: "text-base font-semibold mb-2" %>
+      <%= form.text_field :username, 
+          class: "border p-3 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all" %>
     </div>
 
     <div class="flex flex-col">
-      <%= form.label :email_address, class: "text-gray-700 font-medium mb-1" %>
-      <%= form.email_field :email_address, class: "border border-gray-300 p-2 rounded-md" %>
+      <%= form.label :email_address, class: "text-base font-semibold mb-2" %>
+      <%= form.email_field :email_address, 
+          class: "border p-3 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all" %>
     </div>
 
     <div class="flex flex-col">
-      <%= form.label :role, class: "text-gray-700 font-medium mb-1" %>
-      <%= form.select :role, User.roles.keys.map { |role| [role.capitalize, role] }, {}, class: "border border-gray-300 p-2 rounded-md" %>
+      <%= form.label :role, class: "text-base font-semibold mb-2" %>
+      <%= form.select :role, User.roles.keys.map { |role| [role.capitalize, role] }, {}, 
+          class: "border p-3 rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all" %>
     </div>
 
-    <%= form.submit "Update User", class: "bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-md cursor-pointer transition-colors" %>
-    <%= link_to "Cancel", admin_users_path, class: "ml-4 text-gray-500 hover:text-gray-700 transition-colors" %>
+    <div class="flex items-center pt-4">
+      <%= form.submit "Update User", 
+          class: "py-3 px-6 rounded-full shadow-lg text-lg font-bold text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-pink-400 cursor-pointer transition-all duration-200" %>
+
+      <%= link_to "Cancel", admin_users_path, 
+          class: "ml-4 text-pink-600 hover:text-pink-800 font-medium underline transition-colors" %>
+    </div>
+    
   <% end %>
 </div>

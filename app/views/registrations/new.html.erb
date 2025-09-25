@@ -1,33 +1,43 @@
-<h1 class="text-3xl font-semibold mb-6">Sign Up</h1>
+<div class="container mx-auto p-8 max-w-sm bg-white shadow-xl rounded-2xl border border-pink-100">
+  
+  <h1 class="text-3xl font-bold mb-8 text-center">Sign Up</h1>
 
-<% if flash[:alert] %>
-  <div class="p-4 rounded-md border border-pink-500 text-pink-500">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
+  <% if flash[:alert] %>
+    <div class="p-4 mb-4 rounded-lg border border-pink-400 bg-pink-50 shadow-sm font-medium">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
 
-<%= form_with model: @user, url: signup_path, method: :post, class: "space-y-6" do |f| %>
-  <div>
-    <%= f.label :username, "Username", class: "block text-gray-700" %>
-    <%= f.text_field :username, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF66AD]" %>
-  </div>
+  <%= form_with model: @user, url: signup_path, method: :post, class: "space-y-6" do |f| %>
+    
+    <div>
+      <%= f.label :username, "Username", class: "block text-base font-semibold mb-2" %>
+      <%= f.text_field :username, 
+          class: "w-full p-3 border rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all" %>
+    </div>
 
-  <div>
-    <%= f.label :email_address, "Email Address", class: "block text-gray-700" %>
-    <%= f.email_field :email_address, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF66AD]" %>
-  </div>
+    <div>
+      <%= f.label :email_address, "Email Address", class: "block text-base font-semibold mb-2" %>
+      <%= f.email_field :email_address, 
+          class: "w-full p-3 border rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all" %>
+    </div>
 
-  <div>
-    <%= f.label :password, "Password", class: "block text-gray-700" %>
-    <%= f.password_field :password, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF66AD]" %>
-  </div>
+    <div>
+      <%= f.label :password, "Password", class: "block text-base font-semibold mb-2" %>
+      <%= f.password_field :password, 
+          class: "w-full p-3 border rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all" %>
+    </div>
 
-  <div>
-    <%= f.label :password_confirmation, "Confirm Password", class: "block text-gray-700" %>
-    <%= f.password_field :password_confirmation, class: "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#FF66AD]" %>
-  </div>
+    <div>
+      <%= f.label :password_confirmation, "Confirm Password", class: "block text-base font-semibold mb-2" %>
+      <%= f.password_field :password_confirmation, 
+          class: "w-full p-3 border rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 text-gray-800 transition-all" %>
+    </div>
 
-  <div>
-    <%= f.submit "Sign Up", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
-  </div>
-<% end %>
+    <div class="pt-2">
+      <%= f.submit "Sign Up", 
+          class: "w-full py-3 px-6 rounded-full shadow-lg text-lg font-bold text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-pink-400 cursor-pointer transition-all duration-200" %>
+    </div>
+    
+  <% end %>
+</div>

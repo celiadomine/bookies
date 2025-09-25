@@ -1,16 +1,21 @@
-<div class="container mx-auto p-8 max-w-lg">
-  <h1 class="text-3xl font-bold mb-6">
+<div class="container mx-auto p-8 max-w-lg bg-white shadow-xl rounded-2xl border border-pink-100">
+  
+  <h1 class="text-3xl font-bold mb-8 text-center">
     Create a New Post for "<%= @book.title %>"
   </h1>
 
   <%= form_with(model: [@book, @post], class: "space-y-6") do |f| %>
+
     <div class="form-group">
-      <%= f.label :body, class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= f.text_area :body, class: "w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-pink-500 focus:border-pink-500 h-32" %>
+      <%= f.label :body, class: "block text-base font-semibold mb-2" %>
+      <%= f.text_area :body, 
+          class: "w-full p-3 border rounded-lg shadow-sm focus:ring-pink-500 focus:border-pink-500 h-40 text-gray-800 transition-all" %>
+    </div>
+
+    <div class="pt-4">
+      <%= f.submit "Submit Post", 
+          class: "w-full py-3 px-6 rounded-full shadow-lg text-lg font-bold text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-pink-400 cursor-pointer transition-all duration-200" %>
     </div>
     
-    <div class="flex justify-center">
-      <%= f.submit "Submit Post", class: "w-full py-3 px-6 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-pink-500 hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 cursor-pointer transition duration-150 ease-in-out" %>
-    </div>
   <% end %>
 </div>

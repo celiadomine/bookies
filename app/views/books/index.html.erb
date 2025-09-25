@@ -3,7 +3,6 @@
 
   <div class="space-y-4">
     <% @books.each do |book| %>
-      <%# Card Style: Soft border, white background %>
       <div class="p-4 border border-pink-200 bg-white rounded-xl shadow-md flex items-center justify-between">
 
         <div class="flex items-center flex-grow">
@@ -19,18 +18,15 @@
           </div>
         </div>
 
-        <%# ACTION BUTTONS - INVERSED/OUTLINED STYLE (Write a Review color adjusted) %>
         <div class="flex space-x-3 items-center ml-4">
           
           <%# 1. Write a Review (Soft Pink Border/Text) %>
           <%= link_to "Write a Review", new_book_review_path(book), 
               class: "border border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white font-bold py-2 px-4 rounded-full text-sm transition-colors shadow-sm" %>
           
-          <%# 2. New Post (Standard Pink - Secondary Action) %>
           <%= link_to "New Post", new_book_post_path(book), 
               class: "border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white font-bold py-2 px-4 rounded-full text-sm transition-colors shadow-sm" %>
 
-          <%# 3. Delete (Deepest Pink/Maroon - Danger Action) %>
           <%= button_to "Delete", book_path(book), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this book?" }, 
               class: "border border-pink-800 text-pink-800 hover:bg-pink-800 hover:text-white font-bold py-2 px-4 rounded-full text-sm transition-colors shadow-sm" %>
         </div>

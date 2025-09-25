@@ -1,21 +1,39 @@
-<h1 class="text-3xl font-semibold">Search for Books</h1>
+<div class="container mx-auto p-8 max-w-xl bg-white shadow-xl rounded-2xl border border-pink-100">
+  <h1 class="text-3xl font-bold mb-8 text-center">Search for Books</h1>
 
-<%= form_with url: books_search_path, method: :get do |f| %>
-  <%= f.label :query, "Search for a book" %>
-  <%= f.text_field :query, class: "w-full p-2 border rounded" %>
-  <%= f.submit "Search", class: "bg-pink-500 text-white px-4 py-2 rounded" %>
-<% end %>
+  <%= form_with url: books_search_path, method: :get, class: "space-y-4" do |f| %>
 
-<% if @books.present? %>
-  <h2 class="mt-4 text-xl">Results:</h2>
-  <ul>
-    <% @books.each do |book| %>
-      <li class="mt-2">
-        <%= book["volumeInfo"]["title"] %> by <%= book["volumeInfo"]["authors"]&.join(", ") %>
-        <%= link_to "Select this book", new_book_path(google_books_id: book["id"]), class: "text-pink-500 ml-2" %>
-      </li>
-    <% end %>
-  </ul>
-<% elsif params[:query].present? %>
-  <p class="mt-4">No results found.</p>
-<% end %>
+    <div class="flex flex-col space-y-2">
+    
+      <%= f.label :query, "Search for a book", class: "block text-base font-semibold text-pink-700 mb-1" %>
+
+      <div class="flex items-center space-x-2">
+      
+        <%= f.text_field :query, placeholder: "Title, author, or keyword...",
+            class: "flex-grow p-3 border border-pink-300 rounded-full shadow-sm focus:ring-pink-700 focus:border-pink-700 text-gray-800 transition-all" %>
+        <%= f.submit "Search", 
+            class: "py-3 px-6 rounded-full shadow-lg text-lg font-bold text-white bg-pink-700 hover:bg-pink-700 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-pink-400 cursor-pointer transition-all duration-200" %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @books.present? %>
+    <h2 class="mt-8 text-2xl font-bold text-pink-700 border-t pt-4">Results:</h2>
+    
+    <ul class="space-y-3 mt-4">
+      <% @books.each do |book| %>
+      
+        <li class="p-4 border border-pink-100 bg-pink-50 rounded-lg flex items-center justify-between shadow-sm">
+          <span class="text-gray-800 font-medium mr-4">
+            <%= book["volumeInfo"]["title"] %> by <%= book["volumeInfo"]["authors"]&.join(", ") %>
+          </span>
+
+          <%= link_to "Select this book", new_book_path(google_books_id: book["id"]), 
+              class: "flex-shrink-0 border border-pink-700 text-pink-700 hover:bg-pink-700 hover:text-white font-bold py-2 px-4 rounded-full text-sm transition-colors shadow-sm" %>
+        </li>
+      <% end %>
+    </ul>
+  <% elsif params[:query].present? %>
+    <p class="mt-8 p-4 bg-pink-100 border border-pink-300 text-pink-700 rounded-lg">No results found for that query. Try something else!</p>
+  <% end %>
+</div>
