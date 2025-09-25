@@ -1,0 +1,13 @@
+<h1 class="text-3xl font-semibold mb-6">Activity Log</h1>
+
+<div class="space-y-4">
+  <% if @activities.any? %>
+    <% @activities.each do |activity| %>
+      <div class="p-4 border rounded-md shadow-sm bg-white">
+        <%= render "public_activity/#{activity.trackable_type.downcase.pluralize}/#{activity.key.split('.').last}", activity: activity %>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-gray-500">Noch keine Aktivitäten vorhanden.</p>
+  <% end %>
+</div>

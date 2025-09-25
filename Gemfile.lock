@@ -201,6 +201,11 @@ GEM
     psych (5.2.6)
       date
       stringio
+    public_activity (3.0.1)
+      actionpack (>= 6.1.0)
+      activerecord (>= 6.1)
+      i18n (>= 0.5.0)
+      railties (>= 6.1.0)
     public_suffix (6.0.2)
     puma (7.0.3)
       nio4r (~> 2.0)
@@ -384,6 +389,7 @@ DEPENDENCIES
   jbuilder
   kamal
   propshaft
+  public_activity
   puma (>= 5.0)
   pundit
   rails (~> 8.0.2, >= 8.0.2.1)

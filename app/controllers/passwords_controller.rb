@@ -1,22 +1,28 @@
 class PasswordsController < ApplicationController
+  include Rails.application.routes.url_helpers 
   def new
   end
 
   def create
     @user = User.find_by(email_address: params[:email_address])
-
+  
     if @user.present?
       # Generate a secure token and a timestamp
-      @user.password_reset_token = SecureRandom.hex(20)
+      token = SecureRandom.hex(20)
+      @user.password_reset_token = token
       @user.password_reset_sent_at = Time.now
       @user.save!
-
-      # Send the email with the reset link
-      PasswordMailer.with(user: @user).reset.deliver_now
+  
+      reset_link = edit_password_url(token: token, host: request.host_with_port)
+  
+      Rails.logger.debug "--------------------------------------------------------"
+      Rails.logger.debug "PASSWORD RESET LINK: #{reset_link}"
+      Rails.logger.debug "--------------------------------------------------------"      
     end
-
-    redirect_to root_path, notice: "If an account with that email was found, a password reset link has been sent."
+  
+    redirect_to root_path, notice: "If an account with this email address was found, a link to reset your password has been sent. Please check your terminal."
   end
+  
 
   def edit
     @user = User.find_by(password_reset_token: params[:token])

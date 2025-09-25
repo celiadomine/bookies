@@ -63,7 +63,7 @@
             <% if like %>
               <%= button_to "Unlike", book_review_like_path(review.book, review, like), method: :delete, class: "ml-4 text-pink-500 hover:underline cursor-pointer" %>
              <% else %>
-              <%= button_to "Like", book_review_likes_path(review.book, review), method: :post, class: "ml-4 text-pink-500 hover:underline cursor-pointer" %>
+              <%= button_to "Like", book_review_likes_path(review.book, review), method: :post, class: "ml-4 text-blue-500 hover:underline cursor-pointer" %>
             <% end %>
           <% end %>
           

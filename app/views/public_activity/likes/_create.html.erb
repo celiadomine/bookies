@@ -1,0 +1,23 @@
+<% 
+  like = activity.trackable
+  likeable = like&.likeable 
+%>
+
+<p>
+  <span class="font-bold"><%= activity.owner.username %></span> hat 
+  
+  <% if likeable.present? %>
+    <% if likeable.is_a?(Post) && likeable.book.present? %>
+      einen Post geliked.
+    
+    <% elsif likeable.is_a?(Review) && likeable.book.present? %>
+      ein Review zu geliked.
+      
+    <% else %>
+      einen Beitrag geliked.
+      
+    <% end %>
+  <% else %>
+    einen gelöschten Beitrag geliked.
+  <% end %>
+</p>

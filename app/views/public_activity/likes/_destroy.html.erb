@@ -1,0 +1,9 @@
+<p class="text-gray-600">
+  <span class="font-bold text-red-600"><%= activity.owner.username %></span> hat 
+  <% if activity.trackable_type == 'Like' && activity.trackable.present? %>
+    den Like für einen Eintrag (ID: <%= activity.trackable.likeable_id %>)
+  <% else %>
+    einen Like
+  <% end %>
+  <span class="font-bold">entfernt.</span>
+</p>
