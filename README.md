@@ -34,9 +34,6 @@ rails db:create
 
 # Schema migrieren
 rails db:migrate
-
-# Optional: Seed-Daten (Testnutzer, etc.) laden
-rails db:seed
 ```
 
 4. Tailwind CSS starten:
@@ -52,4 +49,14 @@ bin/rails server
 
 6. Applikation aufrufen:
 Öffnen Sie Ihren Browser unter `http://localhost:3000.`
+
+## Admin user erstellen
+1. User normal über die Applikation registrieren
+2. `bin/rails c`
+3. `user = User.find_by(email_address: 'emailAdresseDesAdmins')`
+4. `user.role = :admin`
+5. `user.save`
+6. `user.role`
+7. `exit`
+8. Server starten mit `bin/rails s`
 
