@@ -40,7 +40,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to book_path(@book), notice: "Review successfully deleted."
+    redirect_to root_path, notice: "Review successfully deleted."
   end
 
   private
