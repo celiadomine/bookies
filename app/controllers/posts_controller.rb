@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to book_path(@book), notice: "Post successfully deleted."
+    redirect_to root_path, notice: "Post successfully deleted."
   end
   
   private
