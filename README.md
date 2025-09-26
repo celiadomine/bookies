@@ -17,7 +17,8 @@ Um Bookies lokal zu starten, folgen Sie diesen Anweisungen.
 ## 🛠️ Installation
 1. Repository klonen:
 ```
-git clone [Ihre Git-URL hier einfügen]
+git clone https://github.com/celiadomine/bookies.git
+
 cd bookies
 ```
 
